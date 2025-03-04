@@ -1,8 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/smoky_white">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="16dp"
+        android:text="Fitness Tracker"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:elevation="4dp"/>
 
     <!-- Карта -->
     <fragment
@@ -11,6 +24,16 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginBottom="16dp" />
+
+    <!-- Надпись "Ваша цель" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ваша цель"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp" />
 
     <!-- Таймер -->
     <LinearLayout
@@ -26,8 +49,9 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/ic_minus"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/minus_button" />
+            android:background="@drawable/circle_black"
+            android:contentDescription="@string/minus_button"
+            app:tint="@android:color/white" />
 
         <!-- Таймер -->
         <TextView
@@ -44,25 +68,28 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/ic_plus"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/plus_button" />
+            android:background="@drawable/circle_black"
+            android:contentDescription="@string/plus_button"
+            app:tint="@android:color/white" />
     </LinearLayout>
 
     <!-- Выпадающий список -->
     <Spinner
         android:id="@+id/activitySpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="48dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/edittext_background"/>
 
     <!-- Кнопка "Начать" -->
     <Button
         android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Начать"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
         android:backgroundTint="@color/purpule"
-        android:textColor="@android:color/white"
         android:padding="16dp"
-        android:background="@drawable/rounded_button" />
+        android:text="Начать"
+        android:textColor="@android:color/white" />
 </LinearLayout>

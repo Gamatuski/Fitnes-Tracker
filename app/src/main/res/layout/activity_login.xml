@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/smoky_white">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -15,7 +15,8 @@
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="32dp"
+        android:elevation="4dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/loginCard"
@@ -84,7 +85,8 @@
                 android:textSize="14sp"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

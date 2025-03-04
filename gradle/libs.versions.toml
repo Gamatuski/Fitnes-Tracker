@@ -15,12 +15,14 @@ material = "1.10.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
 materialVersion = "1.7.8"
+mpandroidchart = "v3.1.0"
 navigationCompose = "2.8.7"
 playServicesLocation = "21.3.0"
 playServicesMaps = "19.1.0"
 retrofit = "2.9.0"
 roomRuntime = "2.6.1"
 securityCrypto = "1.1.0-alpha06"
+squareupLoggingInterceptorVersion = "4.12.0"
 ui = "1.7.8"
 
 [libraries]
@@ -45,6 +47,8 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 material-v150 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+mpandroidchart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchart" }
+okhttp3-logging-interceptor-v4120 = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "squareupLoggingInterceptorVersion" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }

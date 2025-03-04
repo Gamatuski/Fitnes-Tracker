@@ -21,6 +21,8 @@ import com.example.fitnesstracker.api.FitnessApi;
 import com.example.fitnesstracker.api.RetrofitClient;
 import com.example.fitnesstracker.models.RegisterRequest;
 import com.example.fitnesstracker.models.RegisterResponse;
+import com.example.fitnesstracker.utils.StyleTitleText;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -54,7 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
         errorTextView = findViewById(R.id.errorTextView);
 
         // Стилизация заголовка
-        styleTitleText();
+        StyleTitleText styleTitleText = new StyleTitleText();
+        styleTitleText.styleTitleText(titleTextView);
 
         setupFocusListeners();
 
@@ -69,30 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser(email, password, height, weight);
             }
         });
-    }
-
-    private void styleTitleText() {
-        String title = "Fitness Tracker";
-        SpannableString spannableString = new SpannableString(title);
-
-        // Зелёный цвет для буквы "F"
-        spannableString.setSpan(
-                new ForegroundColorSpan(Color.MAGENTA), // Зелёный цвет
-                0, // Начальная позиция (F)
-                1, // Конечная позиция (F)
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-
-        // Зелёный цвет для буквы "T"
-        spannableString.setSpan(
-                new ForegroundColorSpan(Color.MAGENTA), // Зелёный цвет
-                8, // Начальная позиция (T)
-                9, // Конечная позиция (T)
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-
-        // Установка стилизованного текста
-        titleTextView.setText(spannableString);
     }
 
 
@@ -129,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (registerResponse != null && registerResponse.isSuccess()) {
                         // Успешная регистрация
                         Toast.makeText(RegisterActivity.this, "Регистрация успешна", Toast.LENGTH_SHORT).show();
-
+                        Log.d("RegisterActivity", "Response Success: " + new Gson().toJson(registerResponse)); // Log full success response
                         // Закрываем текущую активность и переходим к LoginActivity
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
@@ -137,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
                     } else {
                         // Ошибка регистрации
                         showError(registerResponse != null ? registerResponse.getMessage() : "Ошибка регистрации");
+                        Log.d("RegisterActivity", "Response Code: " + response.code()); // Log response code
                     }
                 } else {
                     // Ошибка сервера (например, 400 Bad Request)

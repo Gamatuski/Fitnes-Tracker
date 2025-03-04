@@ -4,19 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/smoky_white">
+
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:text="Fitness Tracker"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"/>
-
+        android:elevation="4dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/registerCard"

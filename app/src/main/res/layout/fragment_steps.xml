@@ -1,12 +1,100 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Это фрагмент Шаги"
-        android:textSize="24sp" />
+        android:elevation="4dp"
+
+        android:text="Fitness Tracker"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center">
+
+        <!--progress bar implementation-->
+        <ProgressBar
+            android:id="@+id/progressCircle"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circular_shape"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:textAlignment="center" />
+
+        <!--Text implementation in center of the progress bar-->
+
+        <!-- Иконка шагов -->
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_above="@+id/stepsCountTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_steps" />
+
+        <TextView
+            android:id="@+id/stepsCountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="---"
+            android:textColor="#000"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/todayTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/stepsCountTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-20dp"
+            android:gravity="center"
+            android:text="Сегодня"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/stepsCountTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+
+            android:layout_marginBottom="-39dp"
+            android:gravity="center"
+            android:text="Цель: 5000"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_background"
+        />
+
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.fitnesstracker.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.example.fitnesstracker.api.FitnessApi;
 import com.example.fitnesstracker.api.RetrofitClient;
 import com.example.fitnesstracker.models.LoginRequest;
 import com.example.fitnesstracker.models.LoginResponse;
+import com.example.fitnesstracker.utils.StyleTitleText;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -32,6 +34,8 @@ import java.io.IOException;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import android.content.SharedPreferences;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
@@ -53,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         errorTextView = findViewById(R.id.errorTextView);
 
         // Стилизация заголовка
-        styleTitleText();
+        StyleTitleText styleTitleText = new StyleTitleText();
+        styleTitleText.styleTitleText(titleTextView);
 
         // Обработчик фокуса для полей ввода
         setupFocusListeners();
@@ -81,30 +86,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
-    }
-
-    private void styleTitleText() {
-        String title = "Fitness Tracker";
-        SpannableString spannableString = new SpannableString(title);
-
-        // Зелёный цвет для буквы "F"
-        spannableString.setSpan(
-                new ForegroundColorSpan(Color.MAGENTA), // Зелёный цвет
-                0, // Начальная позиция (F)
-                1, // Конечная позиция (F)
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-
-        // Зелёный цвет для буквы "T"
-        spannableString.setSpan(
-                new ForegroundColorSpan(Color.MAGENTA), // Зелёный цвет
-                8, // Начальная позиция (T)
-                9, // Конечная позиция (T)
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
-
-        // Установка стилизованного текста
-        titleTextView.setText(spannableString);
     }
 
     private void setupFocusListeners() {
@@ -139,6 +120,16 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginResponse != null && loginResponse.isSuccess()) {
                         // Успешный вход
                         Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+
+                        String userId = loginResponse.getUser().getId(); //получение user_id
+
+                        // **Сохраняем userId в SharedPreferences**
+                        SharedPreferences sharedPreferences = getSharedPreferences("fitness_prefs", Context.MODE_PRIVATE); // Имя файла настроек "fitness_prefs"
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("userId", userId); // Ключ "userId", значение - полученный userId
+                        editor.apply(); // или editor.commit(); - 'apply' работает асинхронно, 'commit' синхронно
+
+
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "Вход выполнен", Toast.LENGTH_SHORT).show();
                         resetErrorUI(); // Сброс ошибок
